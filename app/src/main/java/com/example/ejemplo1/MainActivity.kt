@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         texto = "Texto en onStart()"
         Log.d(TAG, "Se llama después de onCreate(). Darío, muestro la pantalla. El usuario aún no puede interaccionar")
+        var claseA = ClaseA()
+        claseA.atrib1 = 5
+        claseA.atrib2 = "Soy Darío"
+        claseA.atrib3 = 'o'
+        Toast.makeText(this, claseA.toString(), Toast.LENGTH_LONG).show()
     }
 
     override fun onResume() {
@@ -59,26 +64,27 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class ClaseA() {
-    var atrib1 = 1
-        get () {
-            return atrib1;
+private class ClaseA() {
+    var atrib1 : Int = 1
+         set(valor) {
+            field = valor
         }
+    var atrib2 : String = "Atributo 2"
         set(valor) {
             field = valor
         }
-    var atrib2 = "Atributo 2"
-        get() {
-            return atrib2
-        }
+    var atrib3 : Char = 'h'
         set(valor) {
             field = valor
         }
-    var atrib3 = 'h'
-        get() {
-            return atrib3
-        }
-        set(valor) {
-            field = valor
-        }
+
+    constructor(atrib1 : Int, atrib2 : String, atrib3 : Char) : this() {
+        this.atrib1 = atrib1
+        this.atrib2 = atrib2
+        this.atrib3 = atrib3
+    }
+
+    override fun toString() : String {
+        return "$atrib1,$atrib2,$atrib3"
+    }
 }
